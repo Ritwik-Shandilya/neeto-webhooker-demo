@@ -65,6 +65,9 @@ All core features required for a functional webhook management application are i
 
 ## 6. API Endpoints
 
+Detailed request and response examples for these endpoints are provided in
+[`api-docs.md`](api-docs.md).
+
 ### Webhook Receiver
 
 * `POST /webhooks/:uuid`
