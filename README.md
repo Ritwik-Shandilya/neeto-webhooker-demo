@@ -48,6 +48,24 @@ curl -X POST http://localhost:3000/webhooks/test-uuid -d '{"ping": true}' \
 Each request will create a `WebhookSession` (if it does not already exist) and a
 corresponding `Event` record storing the headers and body.
 
+### Listing Events
+
+To view captured requests for a session:
+
+```bash
+curl http://localhost:3000/events/<session_uuid>
+```
+
+### Replaying Events
+
+Replay a captured event to a new URL by supplying the target `url` parameter:
+
+```bash
+curl -X POST http://localhost:3000/events/<event_id>/replay \
+  -d "url=http://example.com/target"
+```
+
 ---
 
-These instructions cover the project setup described in the [PRD](prd_webhook.md) and correspond to **Issue #1** in [ISSUES.md](ISSUES.md).
+These instructions cover the project setup described in the [PRD](prd_webhook.md).
+The webhook receiver corresponds to **Issue #1**, while the event listing and replay API correspond to **Issue #4** in [ISSUES.md](ISSUES.md).

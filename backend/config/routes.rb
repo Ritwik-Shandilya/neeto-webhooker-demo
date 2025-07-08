@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   post "webhooks/:uuid", to: "webhooks#receive"
 
+  get "events/:uuid", to: "events#index"
+  post "events/:id/replay", to: "events#replay"
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

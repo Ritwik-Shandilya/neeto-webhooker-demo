@@ -11,6 +11,6 @@ class WebhooksController < ApplicationController
       ip_address: request.remote_ip
     )
 
-    render json: { status: 'received', event_id: event.id }
+    render json: { status: "received", event_id: event.id }
   end
 end
