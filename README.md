@@ -104,3 +104,11 @@ Detailed request and response examples for all endpoints are available in
 
 These instructions cover the project setup described in the [PRD](prd_webhook.md).
 The webhook receiver corresponds to **Issue #1**, the event listing and replay API to **Issue #4**, and the in-browser webhook sender to **Issue #7** in [ISSUES.md](ISSUES.md). The API documentation file was added for **Issue #8**.
+
+### End-to-End Testing
+
+A minimal QA script and manual test plan are provided under the `qa/` folder for **Issue #9**.
+
+1. Start the Rails API server and the React development server.
+2. Run `bash qa/e2e_test.sh` (or follow `qa/manual-test-plan.md`) to create a session, send a test webhook, list events, and replay it to `http://httpbin.org/post`.
+3. Open the Inspector UI at <http://localhost:5173> and verify the test webhook appears and replays successfully.
