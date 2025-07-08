@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Input, Button, Modal } from '@bigbinary/neetoui'
 import { replayEvent } from '../api'
 
 interface Props {
@@ -17,18 +18,20 @@ export default function ReplayModal({ eventId, onClose }: Props) {
   }
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h3>Replay Event {eventId}</h3>
-        <input
-          placeholder="Target URL"
-          value={url}
-          onChange={e => setUrl(e.target.value)}
-        />
-        <button onClick={handleSubmit}>Send</button>
-        <button onClick={onClose}>Close</button>
-        {result && <p>{result}</p>}
+    <Modal isOpen onClose={onClose} size="small" closeButton={false}>
+      <h3>Replay Event {eventId}</h3>
+      <Input
+        placeholder="Target URL"
+        value={url}
+        onChange={e => setUrl(e.target.value)}
+        unlimitedChars
+        className="mb-3"
+      />
+      <div className="neeto-ui-flex neeto-ui-gap-2 neeto-ui-justify-end">
+        <Button label="Send" style="primary" onClick={handleSubmit} />
+        <Button label="Close" style="secondary" onClick={onClose} />
       </div>
-    </div>
+      {result && <p>{result}</p>}
+    </Modal>
   )
 }

@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: neeto-webhooker-demo
+    env: docker
+    dockerfilePath: backend/Dockerfile
+    plan: free
+    buildCommand: bundle exec rails db:migrate
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Textarea, Button } from '@bigbinary/neetoui'
 import { sendTestWebhook } from '../api'
 
 interface Props {
@@ -19,11 +20,19 @@ export default function WebhookSender({ sessionUuid, onSent }: Props) {
   return (
     <div className="webhook-sender">
       <h3>Send Test Webhook</h3>
-      <textarea
+      <Textarea
         value={payload}
         onChange={e => setPayload(e.target.value)}
+        rows={4}
+        unlimitedChars
       />
-      <button onClick={handleSend} disabled={!sessionUuid}>Send</button>
+      <Button
+        label="Send"
+        style="primary"
+        disabled={!sessionUuid}
+        onClick={handleSend}
+        className="mt-2"
+      />
       {result && <pre>{result}</pre>}
     </div>
   )
