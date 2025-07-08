@@ -34,6 +34,20 @@ npm run dev
 
 The app will start on <http://localhost:5173> and will use Axios (to be added) to talk to the Rails API.
 
+### Capturing Webhooks
+
+After starting the Rails server, you can test the webhook receiver by sending a
+POST request to `/webhooks/:uuid` where `:uuid` is any unique identifier. For
+example:
+
+```bash
+curl -X POST http://localhost:3000/webhooks/test-uuid -d '{"ping": true}' \
+  -H 'Content-Type: application/json'
+```
+
+Each request will create a `WebhookSession` (if it does not already exist) and a
+corresponding `Event` record storing the headers and body.
+
 ---
 
 These instructions cover the project setup described in the [PRD](prd_webhook.md) and correspond to **Issue #1** in [ISSUES.md](ISSUES.md).
