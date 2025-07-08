@@ -10,9 +10,10 @@ export interface EventRecord {
 interface Props {
   sessionUuid: string
   onSelect: (event: EventRecord) => void
+  refreshKey: number
 }
 
-export default function EventList({ sessionUuid, onSelect }: Props) {
+export default function EventList({ sessionUuid, onSelect, refreshKey }: Props) {
   const [events, setEvents] = useState<EventRecord[]>([])
   const [search, setSearch] = useState('')
 
@@ -21,7 +22,7 @@ export default function EventList({ sessionUuid, onSelect }: Props) {
     fetchEvents(sessionUuid)
       .then(setEvents)
       .catch(err => console.error(err))
-  }, [sessionUuid])
+  }, [sessionUuid, refreshKey])
 
   const filtered = events.filter(e =>
     e.method.toLowerCase().includes(search.toLowerCase()) ||

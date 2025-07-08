@@ -12,3 +12,12 @@ export async function replayEvent(eventId: number, url: string) {
   });
   return res.json();
 }
+
+export async function sendTestWebhook(sessionUuid: string, payload: string) {
+  const res = await fetch(`http://localhost:3000/webhooks/${sessionUuid}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: payload,
+  });
+  return { status: res.status, body: await res.text() };
+}
