@@ -112,3 +112,18 @@ A minimal QA script and manual test plan are provided under the `qa/` folder for
 1. Start the Rails API server and the React development server.
 2. Run `bash qa/e2e_test.sh` (or follow `qa/manual-test-plan.md`) to create a session, send a test webhook, list events, and replay it to `http://httpbin.org/post`.
 3. Open the Inspector UI at <http://localhost:5173> and verify the test webhook appears and replays successfully.
+
+### Deployment
+
+The repository includes a `render.yaml` for deploying the app to [Render](https://render.com).
+Build the frontend and copy the generated files into `backend/public`:
+
+```bash
+cd frontend
+npm install
+npm run build
+cp -r dist/* ../backend/public/
+```
+
+Create a Render web service using `backend/Dockerfile` and set the `RAILS_MASTER_KEY`
+from `backend/config/master.key`. During deploy the service runs `bundle exec rails db:migrate`.

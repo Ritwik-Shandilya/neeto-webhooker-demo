@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Input } from '@bigbinary/neetoui'
 import { fetchEvents } from '../api'
 
 export interface EventRecord {
@@ -31,10 +32,12 @@ export default function EventList({ sessionUuid, onSelect, refreshKey }: Props) 
 
   return (
     <div className="event-list">
-      <input
+      <Input
         placeholder="Search"
         value={search}
         onChange={e => setSearch(e.target.value)}
+        size="large"
+        unlimitedChars
       />
       <ul>
         {filtered.map(event => (
