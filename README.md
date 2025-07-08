@@ -95,7 +95,12 @@ expire after **7 days**. Accessing an expired session will return `410 Gone`.
 curl -X POST http://localhost:3000/sessions
 ```
 
+### API Reference
+
+Detailed request and response examples for all endpoints are available in
+[`api-docs.md`](api-docs.md).
+
 ---
 
 These instructions cover the project setup described in the [PRD](prd_webhook.md).
-The webhook receiver corresponds to **Issue #1**, the event listing and replay API to **Issue #4**, and the in-browser webhook sender to **Issue #7** in [ISSUES.md](ISSUES.md).
+The webhook receiver corresponds to **Issue #1**, the event listing and replay API to **Issue #4**, and the in-browser webhook sender to **Issue #7** in [ISSUES.md](ISSUES.md). The API documentation file was added for **Issue #8**.
