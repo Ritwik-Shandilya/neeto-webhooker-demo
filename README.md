@@ -34,6 +34,14 @@ npm run dev
 
 The app will start on <http://localhost:5173> and will use Axios (to be added) to talk to the Rails API.
 
+### Inspector UI
+
+Once both backend and frontend are running, open <http://localhost:5173> in your browser. Enter the `uuid` of a webhook session in the input box at the top to load captured events.
+
+* **Left pane:** list of events with a search box.
+* **Right pane:** details for the selected event.
+* **Replay:** click the "Replay" button to open a modal and send the request payload to a new URL.
+
 ### Capturing Webhooks
 
 After starting the Rails server, you can test the webhook receiver by sending a
