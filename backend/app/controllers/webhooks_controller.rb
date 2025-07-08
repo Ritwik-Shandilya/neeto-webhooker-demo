@@ -6,8 +6,9 @@ class WebhooksController < ApplicationController
       render json: { error: "session expired" }, status: :gone and return
     end
 
+    sanitized_headers = request.headers.env.select { |k, _| k.start_with?("HTTP_") }
     event = session.events.create!(
-      headers: request.headers.to_h,
+      headers: sanitized_headers,
       body: request.raw_post,
       method: request.method,
       received_at: Time.current,
