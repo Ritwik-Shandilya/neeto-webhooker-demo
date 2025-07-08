@@ -73,6 +73,13 @@ curl -X POST http://localhost:3000/events/<event_id>/replay \
   -d "url=http://example.com/target"
 ```
 
+### Sending Test Webhooks from the Browser
+
+The Inspector UI now includes a **Send Test Webhook** form. Enter a session UUID
+and raw JSON payload, then click "Send" to POST the data directly to
+`/webhooks/:uuid`. The response status and body are displayed under the form, and
+the new request will appear in the event list automatically.
+
 ### Managing Sessions
 
 Create a new webhook session (optional `name` parameter for a persistent session):
@@ -91,4 +98,4 @@ curl -X POST http://localhost:3000/sessions
 ---
 
 These instructions cover the project setup described in the [PRD](prd_webhook.md).
-The webhook receiver corresponds to **Issue #1**, while the event listing and replay API correspond to **Issue #4** in [ISSUES.md](ISSUES.md).
+The webhook receiver corresponds to **Issue #1**, the event listing and replay API to **Issue #4**, and the in-browser webhook sender to **Issue #7** in [ISSUES.md](ISSUES.md).
