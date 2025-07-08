@@ -25,6 +25,14 @@ ENV RAILS_ENV="production" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development"
 
+# Build frontend assets
+FROM docker.io/library/node:20 AS frontend-build
+WORKDIR /frontend
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm install --legacy-peer-deps
+COPY frontend/ ./
+RUN npm run build
+
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
@@ -54,6 +62,7 @@ FROM base
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
+COPY --from=frontend-build /frontend/dist /rails/public
 
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \

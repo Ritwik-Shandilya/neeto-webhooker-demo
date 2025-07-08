@@ -8,7 +8,7 @@ This demo project shows the initial setup for **Webhooker** using a Rails API ba
 ## Prerequisites
 
 - Ruby 3.4+
-- Node.js 20+
+- Node.js 20+ (use `npm install --legacy-peer-deps` if your Node version is below 22)
 - PostgreSQL
 
 ## Getting Started
@@ -116,11 +116,11 @@ A minimal QA script and manual test plan are provided under the `qa/` folder for
 ### Deployment
 
 The repository includes a `render.yaml` for deploying the app to [Render](https://render.com).
-Build the frontend and copy the generated files into `backend/public`:
+The Docker build now compiles the React app automatically. For local testing you can still build and copy the files manually:
 
 ```bash
 cd frontend
-npm install
+npm install --legacy-peer-deps
 npm run build
 cp -r dist/* ../backend/public/
 ```
