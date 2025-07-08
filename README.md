@@ -65,6 +65,21 @@ curl -X POST http://localhost:3000/events/<event_id>/replay \
   -d "url=http://example.com/target"
 ```
 
+### Managing Sessions
+
+Create a new webhook session (optional `name` parameter for a persistent session):
+
+```bash
+curl -X POST http://localhost:3000/sessions -d "name=my-session"
+```
+
+The response returns a `uuid` to use with `/webhooks/:uuid`. Anonymous sessions
+expire after **7 days**. Accessing an expired session will return `410 Gone`.
+
+```bash
+curl -X POST http://localhost:3000/sessions
+```
+
 ---
 
 These instructions cover the project setup described in the [PRD](prd_webhook.md).

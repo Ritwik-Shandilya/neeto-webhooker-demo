@@ -5,6 +5,9 @@ class EventsController < ApplicationController
   # GET /events/:uuid
   def index
     session = WebhookSession.find_by!(uuid: params[:uuid])
+    if session.expired?
+      render json: { error: "session expired" }, status: :gone and return
+    end
     events = session.events.order(received_at: :desc)
     render json: events
   end
@@ -12,6 +15,9 @@ class EventsController < ApplicationController
   # POST /events/:id/replay
   def replay
     event = Event.find(params[:id])
+    if event.webhook_session.expired?
+      render json: { error: "session expired" }, status: :gone and return
+    end
     url = params[:url]
     uri = URI.parse(url)
     request_class = Net::HTTP.const_get(event.method.capitalize)
